@@ -2,6 +2,7 @@ package binance
 
 import (
 	"fmt"
+	"log"
 	"strings"
 	"time"
 
@@ -274,6 +275,7 @@ func WsCombinedKlineServe(symbolIntervalPair map[string]string, handler WsKlineH
 		endpoint += fmt.Sprintf("%s@kline_%s", strings.ToLower(symbol), interval) + "/"
 	}
 	endpoint = endpoint[:len(endpoint)-1]
+	log.Panicln(endpoint)
 	cfg := newWsConfig(endpoint)
 	wsHandler := func(message []byte) {
 		j, err := newJSON(message)
